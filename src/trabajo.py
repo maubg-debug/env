@@ -24,8 +24,20 @@ class Trabajo:
                     if "random" in string:
                         frString = string[9:-3].split(",")
                         res = random.randint(int(frString[0]), int(frString[1]))
-                    cosa = cosa.replace(" ", "").replace(string, str(res))
-                    return cosa
+                    elif string[2:-2] in envy:
+                        if not "$" in string[2:-2]:
+                            print("Sintaxis invalida")
+                            exit(1)
+                        algo = self.get(string[2:-2].replace("$", ""), envy)
+                    cosa = cosa.replace(" ", "")
+                    try:
+                        return cosa.replace(string, str(res))
+                    except:
+                        pass
+                    try:
+                        return cosa.replace(string, algo)
+                    except:
+                        pass
                 else:
                     print("Sintaxis invalida")
                     exit(1)
@@ -43,7 +55,7 @@ class Trabajo:
                     cosa = cosa.split(":")
                     cosa = self.parse(cosa[1], envy)
                     return cosa
-            return None
+            return
 
     def write(self, nombre: str, value: str, archivo: str):
         if archivo is not None:

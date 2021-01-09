@@ -4,7 +4,7 @@ string = ""
 
 env = Mauenv("D:\\work\\mauenv")
 
-data = env.get("mundo")
+data = env.get("HOLA")
 
 print(data)
 

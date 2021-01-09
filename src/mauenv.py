@@ -24,7 +24,7 @@ class Mauenv:
         data = Trabajo().get(nombre, self.env[1])
         if data is not None:
             return data
-        return None
+        
 
     def _chequeo(self, val):
         for letra in val:
