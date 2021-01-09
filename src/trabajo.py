@@ -11,7 +11,7 @@ class Trabajo:
                     if chars == "{":
                         exN.append(cosa.index(chars))
                     elif chars == "}":
-                        exN.append(cosa.index(chars) + 2)    
+                        exN.append(cosa.index(chars) + 1)    
                 except IndexError:
                     pass
                 if len(exN) == 2:
@@ -19,7 +19,7 @@ class Trabajo:
                     # print(cosa[exN[0]:exN[1]])
                     res = ""
                     if "random" in string:
-                        frString = string[8:-2].split(",")
+                        frString = string[string.index("[") + 1:string.index("]")].split(",")
                         res = random.randint(int(frString[0]), int(frString[1]))
                         exN = []
                     elif string[2:-1] in envy:

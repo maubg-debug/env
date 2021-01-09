@@ -1,3 +1,4 @@
 // UN comentario
+NUM_2: { random[1, 1000] }
 MUNDO: mi_numero_random_ es _ { random[2, 5] }
-HOLA: { $MUNDO } _mas_ { random[2, 5] } 
+HOLA: { $MUNDO } _mas_ { random[2, 5] } _menos_ { $NUM_2 }
