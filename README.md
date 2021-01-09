@@ -46,6 +46,6 @@
 
 # TODO 
 - [x] Hacer que se puedan usar variables
-- [] Mas cosas como la de `{{ random[num1, num2] }}`
-- [] Mejorar todo
-- [] hacer que no se vea como una \*\*\*\*\*\*
+- [ ] Mas cosas como la de `{{ random[num1, num2] }}`
+- [ ] Mejorar todo
+- [ ] hacer que no se vea como una \*\*\*\*\*\*
