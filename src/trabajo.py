@@ -4,46 +4,32 @@ import random
 class Trabajo:
 
     def parse(self, cosa, envy):
-        if "{{" in cosa:
-            if "}}" in cosa:
-                exN = []
-                for i, chars in enumerate(cosa):
-                    try:
-                        if chars == "{" and cosa[int(i) + 1] == "{":
-                            exN.append(i)
-                        elif chars == "}" and cosa[int(i) + 1] == "}":
-                            exN.append(i + 2)    
-                        else:
-                            continue
-                    except IndexError:
-                        continue
-                
+        if "{" in cosa and "}" in cosa:
+            exN = []
+            for i, chars in enumerate(cosa):
+                try:
+                    if chars == "{":
+                        exN.append(cosa.index(chars))
+                    elif chars == "}":
+                        exN.append(cosa.index(chars) + 2)    
+                except IndexError:
+                    pass
                 if len(exN) == 2:
                     string = str(cosa[exN[0]:exN[1]]).replace(" ", "")
-
+                    # print(cosa[exN[0]:exN[1]])
+                    res = ""
                     if "random" in string:
-                        frString = string[9:-3].split(",")
+                        frString = string[8:-2].split(",")
                         res = random.randint(int(frString[0]), int(frString[1]))
-                    elif string[2:-2] in envy:
-                        if not "$" in string[2:-2]:
+                        exN = []
+                    elif string[2:-1] in envy:
+                        if not "$" in string[1:-1]:
                             print("Sintaxis invalida")
                             exit(1)
-                        algo = self.get(string[2:-2].replace("$", ""), envy)
-                    cosa = cosa.replace(" ", "")
-                    try:
-                        return cosa.replace(string, str(res))
-                    except:
-                        pass
-                    try:
-                        return cosa.replace(string, algo)
-                    except:
-                        pass
-                else:
-                    print("Sintaxis invalida")
-                    exit(1)
-
-            print("Sintaxis invalida")
-            exit(1)
+                        res = self.get(string[2:-2].replace("$", ""), envy)
+                        exN = []
+                    cosa = cosa.replace(" ", "").replace(string, str(res))
+            return cosa
         return cosa
 
     def get(self, nombre, envy):

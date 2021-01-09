@@ -26,7 +26,7 @@
     COSA: cosas_xd
     COSA_2      : awd
     // Comentario
-    NUM: {{ random[2, 10] }}
+    NUM: { random[2, 10] }
     ```
 
 * Funciones
@@ -46,6 +46,6 @@
 
 # TODO 
 - [x] Hacer que se puedan usar variables
-- [ ] Mas cosas como la de `{{ random[num1, num2] }}`
+- [ ] Mas cosas como la de `{ random[num1, num2] }`
 - [ ] Mejorar todo
 - [ ] hacer que no se vea como una \*\*\*\*\*\*
