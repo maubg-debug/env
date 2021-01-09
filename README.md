@@ -25,8 +25,9 @@
     ```
     COSA: cosas_xd
     COSA_2      : awd
-    // Comentario
-    NUM: { random[2, 10] }
+    // Comentario (no pueden ir en la misma linea)
+    NUM: {{ random[2, 10] }}
+    VAR: {{ $NUM }}
     ```
 
 * Funciones
