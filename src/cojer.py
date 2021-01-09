@@ -9,5 +9,5 @@ def cojer(directorio):
 
     for archivo in os.listdir(directorio):
         if archivo.endswith(".mauenv"):
-            return [True, str(open(archivo, "r").read()), ValidarArchivo(archivo)]
+            return [True, str(open(ValidarArchivo(archivo), "r").read()), ValidarArchivo(archivo)]
     return [False, None]

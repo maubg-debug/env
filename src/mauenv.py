@@ -41,4 +41,4 @@ class Mauenv:
         data = Trabajo().write(nombre, value, self.env[2])
 
     def read(self):
-        return open(self.env[2], "r").read()
+        return str(self.env[1])
