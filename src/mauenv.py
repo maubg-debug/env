@@ -7,13 +7,11 @@ class Mauenv:
         self.dir = directorio
         if not self.dir:
             print("No se ha puesto ningun directorio")
+            exit(1)
         
-        self.letras = "q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m".upper().split(",")
-        self.under = "_"
+        self._letras = "q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m,_".upper().split(",")
 
         self.env = cojer(self.dir)
-
-        # print(self.env)
 
         if self.env[0] == False:
             print("No se encontro un .mauenv")
@@ -28,7 +26,7 @@ class Mauenv:
 
     def _chequeo(self, val):
         for letra in val:
-            if str(letra).upper() not in self.letras and str(letra) not in ["{", "}"]:
+            if str(letra).upper() not in self._letras in ["{", "}"]:
                 print("Letra invalida :: " + str(letra))
                 exit(1)
 

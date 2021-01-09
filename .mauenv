@@ -1,4 +1,11 @@
 // UN comentario
-NUM_2: { random[1, 1000] }
-MUNDO: mi_numero_random_ es _ { random[2, 5] }
-HOLA: { $MUNDO } _mas_ { random[2, 5] } _menos_ { $NUM_2 }
+
+MUNDO                       :mundo
+HOLA: Hola_{ $MUNDO }_mis_años_son_{ random[100, 1000] }
+
+// LLaves
+API_KEY: 1234567890
+TOKEN: 12345qweradlwj1_23.23.31223213
+
+// Host
+HOST: 5000

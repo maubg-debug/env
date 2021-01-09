@@ -29,7 +29,6 @@ class Trabajo:
                         res = self.get(string[2:-2].replace("$", ""), envy)
                         exN = []
                     cosa = cosa.replace(" ", "").replace(string, str(res))
-            return cosa
         return cosa
 
     def get(self, nombre, envy):
@@ -41,16 +40,14 @@ class Trabajo:
                     cosa = cosa.split(":")
                     cosa = self.parse(cosa[1], envy)
                     return cosa
-            return
+            return None
 
     def write(self, nombre: str, value: str, archivo: str):
         if archivo is not None:
             dataEx = open(archivo, "r").read()
-            if not dataEx.endswith("\n"):
+            if not dataEx.endswith("\n") or not len(dataEx) > 0:
                 dataEx = str(dataEx) + "\n"
             data = open(archivo, "w")
 
             data.write(f"{dataEx}{nombre}: {value}\n")
             data.close()
-
-            return
