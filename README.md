@@ -1,0 +1,2 @@
+# .mauenv
+ Un .env personalizado

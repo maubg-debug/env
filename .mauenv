@@ -1,0 +1,2 @@
+// UN comentario
+MUNDO: mi_numero_random_ es _ {{ random[2, 5] }}
