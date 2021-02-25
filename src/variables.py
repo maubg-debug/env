@@ -65,7 +65,6 @@ class Literal(Atom):
         return self.value
 
 def parse_variables(value):
-    # type: (Text) -> Iterator[Atom]
     cursor = 0
 
     for match in _posix_variable.finditer(value):

@@ -119,22 +119,18 @@ class utils:
 
 class Position:
     def __init__(self, chars, line):
-        # type: (int, int) -> None
         self.chars = chars
         self.line = line
 
     @classmethod
     def start(cls):
-        # type: () -> Position
         return cls(chars=0, line=1)
 
     def set(self, other):
-        # type: (Position) -> None
         self.chars = other.chars
         self.line = other.line
 
     def advance(self, string):
-        # type: (Text) -> None
         self.chars += len(string)
         self.line += len(re.findall(re.compile(r"(\r\n|\n|\r)", re.UNICODE), string))
 

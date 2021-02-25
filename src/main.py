@@ -180,16 +180,13 @@ def parse_unquoted_value(reader):
     return re.sub(r"\s+#.*", "", part).rstrip()
 
 def decode_escapes(regex, string):
-    # type: (Pattern[Text], Text) -> Text
     def decode_match(match):
-        # type: (Match[Text]) -> Text
-        return codecs.decode(match.group(0), 'unicode-escape')  # type: ignore
+        return codecs.decode(match.group(0), 'unicode-escape') 
 
     return regex.sub(decode_match, string)
 
 
 def parse_value(reader):
-    # type: (Reader) -> Text
     char = reader.peek(1)
     if char == u"'":
         (value,) = reader.read_regex(_single_quoted_value)
@@ -203,7 +200,6 @@ def parse_value(reader):
         return parse_unquoted_value(reader)
 
 def parse_stream(stream):
-    # type: (IO[Text]) -> Iterator[Binding]
     reader = Reader(stream)
     while reader.has_next():
         yield parse_binding(reader)
@@ -270,7 +266,7 @@ class DotEnv:
             return data[key]
 
         if self.verbose:
-            logger.warning("Key %s not found in %s.", key, self.dotenv_path)
+            logger.warning("No se encontro %s en %s.", key, self.dotenv_path)
 
         return None
 
