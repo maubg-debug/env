@@ -25,15 +25,15 @@ load_dotenv()  # tomar variables de entorno de .env.
 La sintaxis de los archivos `.env` admitidos por env es similar a la de Bash:
 
 ```bash
-# Development settings
-DOMAIN=example.org
-ADMIN_EMAIL=admin@${DOMAIN}
-ROOT_URL=${DOMAIN}/app
+# Comentario
+DOMINIO=example.org
+ADMIN_EMAIL=admin@${DOMINIO}
+ROOT_URL=${DOMINIO}/app
 ```
 Si usa variables en valores, asegúrese de que estén rodeadas por `{` y `}`, como
-`${DOMAIN}`, ya que las variables básicas como `$DOMAIN` no se expanden.
+`${DOMINIO}`, ya que las variables básicas como `$DOMINIO` no se expanden.
 
-Probablemente desee agregar `.env` a su` .gitignore`, especialmente si contiene
+Probablemente desee agregar `.env` a su`.gitignore`, especialmente si contiene
 secretos como una contraseña.
 
 Consulte la sección "Formato de archivo" a continuación para obtener más información sobre lo que puede escribir en un
