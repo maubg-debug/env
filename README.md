@@ -1,52 +1,40 @@
-# .mauenv
- Un .env personalizado (Sigue en progreso y hay cosas feas en el codigo como "hardcode")
+# .env
 
+.env lee pares clave-valor de un archivo `.env` y puede establecerlos como entorno
+variables. Ayuda en el desarrollo de aplicaciones siguiendo las
 
-# Como funciona (Y sintaxis)
+## Como empezar
 
-* `.mauenv` tiene que estar en la ruta padre del directorio en el que tu eligas
-    ```python
-    from src.mauenv import Mauenv
+Si su aplicación toma su configuración de variables de entorno, como un factor de 12
+aplicación, lanzarla en desarrollo no es muy práctico porque tienes que configurar
+esas variables de entorno usted mismo.
 
-    env = Mauenv("D:\\work\\mauenv") # Ruta
-    ```
+Para ayudarlo con eso, puede agregar Python-dotenv a su aplicación para que cargue el
+configuración de un archivo `.env` cuando está presente (por ejemplo, en desarrollo) mientras permanece
+configurable a través del entorno:
 
-    Entonces las carpetas serian asi
+```python
+from src.main import load_env
 
-    ```
-    work/
-      | .mauenv
-      |- carpeta/
-      | main.py
-    ```
+load_dotenv()  # tomar variables de entorno de .env.
 
-* Luego la sintaxis iria asi
-    
-    ```
-    COSA: cosas_xd
-    COSA_2      : awd
-    // Comentario (no pueden ir en la misma linea)
-    NUM: { random[2, 10] }
-    VAR: { $NUM } _mas_ { random[1, 10] }
-    ```
+# Código de su aplicación, que usa variables de entorno (por ejemplo, de `os.environ` o
+# `os.getenv`) como si vinieran del entorno real.
+```
 
-* Funciones
+La sintaxis de los archivos `.env` admitidos por python-dotenv es similar a la de Bash:
 
-    ```python
-    from src.mauenv import Mauenv
+```bash
+# Development settings
+DOMAIN=example.org
+ADMIN_EMAIL=admin@${DOMAIN}
+ROOT_URL=${DOMAIN}/app
+```
+Si usa variables en valores, asegúrese de que estén rodeadas por `{` y `}`, como
+`${DOMAIN}`, ya que las variables básicas como `$DOMAIN` no se expanden.
 
-    env = Mauenv("D:\\work\\mauenv") # Ruta
+Probablemente desee agregar `.env` a su` .gitignore`, especialmente si contiene
+secretos como una contraseña.
 
-    data = env.get("COSA")
-    print(data) # Recojes el valor de "COSA"
-
-    env.write("ALGO", "XD") # Escribes algo caracteres validos ([a-z], [A-Z], _)
-
-    env.read() # Mirar todo el archivo .env
-    ```
-
-# TODO 
-- [x] Hacer que se puedan usar variables
-- [ ] Mas cosas como la de `{ random[num1, num2] }`
-- [ ] Mejorar todo
-- [ ] hacer que no se vea como una \*\*\*\*\*\*
+Consulte la sección "Formato de archivo" a continuación para obtener más información sobre lo que puede escribir en un
+Archivo `.env`.

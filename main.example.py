@@ -1,12 +1,3 @@
-from src.mauenv import Mauenv
+from src.main import load_env
 
-env = Mauenv("D:\\work\\mauenv")
-
-data = env.get("HOLA")
-print(data)
-
-env.write("ME_LLAMO", "Maubg")
-
-env.read()
-
-input()
+load_env()
