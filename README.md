@@ -9,7 +9,7 @@ Si su aplicación toma su configuración de variables de entorno, como un factor
 aplicación, lanzarla en desarrollo no es muy práctico porque tienes que configurar
 esas variables de entorno usted mismo.
 
-Para ayudarlo con eso, puede agregar Python-dotenv a su aplicación para que cargue el
+Para ayudarlo con eso, puede agregar env a su aplicación para que cargue el
 configuración de un archivo `.env` cuando está presente (por ejemplo, en desarrollo) mientras permanece
 configurable a través del entorno:
 
@@ -22,7 +22,7 @@ load_dotenv()  # tomar variables de entorno de .env.
 # `os.getenv`) como si vinieran del entorno real.
 ```
 
-La sintaxis de los archivos `.env` admitidos por python-dotenv es similar a la de Bash:
+La sintaxis de los archivos `.env` admitidos por env es similar a la de Bash:
 
 ```bash
 # Development settings
