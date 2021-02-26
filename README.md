@@ -22,6 +22,13 @@ load_dotenv()  # tomar variables de entorno de .env.
 # `os.getenv`) como si vinieran del entorno real.
 ```
 
+```python
+from src.main import get_env
+
+data = get_env()  # Recibir -> dict
+print(data)
+```
+
 La sintaxis de los archivos `.env` admitidos por env es similar a la de Bash:
 
 ```bash

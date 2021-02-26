@@ -248,15 +248,19 @@ class DotEnv:
                 if mapping.key is not None:
                     yield mapping.key, mapping.value
 
-    def set_as_environment_variables(self):
+    def set_as_environment_variables(self, get: bool = False):
+        if get:
+            data = {}
         for k, v in self.dict().items():
-            print(k)
-            print(v)
             if k in os.environ and not self.override:
                 continue
             if v is not None:
+                if get:
+                    data[k] = v
                 os.environ[to_env(k)] = to_env(v)
 
+        if get:
+            return data
         return True
 
     def get(self, key):
@@ -275,4 +279,13 @@ def load_env(path: str = None, stream: str = None, verbose: bool = None, **kwarg
     error = True if kwargs.get("error") else False
 
     f = path or stream or utils.find_dotenv(raise_error_if_not_found=error)
-    DotEnv(path=f, verbose=verbose, **kwargs).set_as_environment_variables()
+    data = DotEnv(path=f, verbose=verbose, **kwargs)
+    return data.set_as_environment_variables()
+
+def get_env(path: str = None, stream: str = None, verbose: bool = None, **kwargs):
+    
+    error = True if kwargs.get("error") else False
+
+    f = path or stream or utils.find_dotenv(raise_error_if_not_found=error)
+    data = DotEnv(path=f, verbose=verbose, **kwargs)
+    return data.set_as_environment_variables(get=True)
