@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+# .env
 
-You can use the [editor on GitHub](https://github.com/maubg-debug/env/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+.env lee pares clave-valor de un archivo `.env` y puede establecerlos como entorno
+variables. Ayuda en el desarrollo de aplicaciones siguiendo las
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Como empezar
 
-### Markdown
+Si su aplicación toma su configuración de variables de entorno, como un factor de 12
+aplicación, lanzarla en desarrollo no es muy práctico porque tienes que configurar
+esas variables de entorno usted mismo.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Para ayudarlo con eso, puede agregar env a su aplicación para que cargue el
+configuración de un archivo `.env` cuando está presente (por ejemplo, en desarrollo) mientras permanece
+configurable a través del entorno:
 
-```markdown
-Syntax highlighted code block
+```python
+from src.main import load_env
 
-# Header 1
-## Header 2
-### Header 3
+load_dotenv()  # tomar variables de entorno de .env.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+# Código de su aplicación, que usa variables de entorno (por ejemplo, de `os.environ` o
+# `os.getenv`) como si vinieran del entorno real.
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```python
+from src.main import get_env
 
-### Jekyll Themes
+data = get_env()  # Recibir -> dict
+print(data)
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/maubg-debug/env/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+La sintaxis de los archivos `.env` admitidos por env es similar a la de Bash:
 
-### Support or Contact
+```bash
+# Comentario
+DOMINIO=example.org
+ADMIN_EMAIL=admin@${DOMINIO}
+ROOT_URL=${DOMINIO}/app
+```
+Si usa variables en valores, asegúrese de que estén rodeadas por `{` y `}`, como
+`${DOMINIO}`, ya que las variables básicas como `$DOMINIO` no se expanden.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Probablemente desee agregar `.env` a su`.gitignore`, especialmente si contiene
+secretos como una contraseña.
+
+Consulte la sección "Formato de archivo" a continuación para obtener más información sobre lo que puede escribir en un
+Archivo `.env`.
